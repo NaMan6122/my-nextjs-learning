@@ -40,7 +40,7 @@ export default function SignupPage(){ //method for the functioning of the signup
 
     return ( //usage of tailwind css.
         <div className = "flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? "Processing":"Sign Up"}</h1>
+            <h1>{loading ? "Processing....":"Sign Up"}</h1>
             <hr />
             <label htmlFor = "username">username</label>
             <input
