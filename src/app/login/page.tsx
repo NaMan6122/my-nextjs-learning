@@ -18,11 +18,15 @@ export default function LoginPage(){ //method for the functioning of the signup 
         try {
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
+            if(response){
+                alert("Login Successful!!!");
+            }
             console.log("Login Successfull!", response.data);
             toast.success("Login Successfull!");
             router.push("/profile");
 
         } catch (error: any) {
+            alert("Login Failed! Invalid email or password!!");
             console.log("login failed", error.message);
             toast.error = error.message;
         } finally{
@@ -46,7 +50,7 @@ export default function LoginPage(){ //method for the functioning of the signup 
             <input
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="email"
-            type="text"
+            type="email"
             value={user.email}
             onChange = {(e) => setUser({...user, email: e.target.value})}
             placeholder= "email"
@@ -56,12 +60,14 @@ export default function LoginPage(){ //method for the functioning of the signup 
             <input
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="password"
-            type="text"
+            type="password"
             value={user.password}
             onChange = {(e) => setUser({...user, password: e.target.value})}
             placeholder= "password"
             />
 
+            <Link href="/resetpassword">forgot password?</Link>
+            <br></br>
             <button
             onClick = {onLogin}
             className="p-2 border border-fray-300 rounded-lg mb-4 focus: outline-none focus border-gray-600">{buttonDisabled ? "Please Fill All Fields" : "Login"}</button>
